@@ -1,0 +1,3 @@
+# Brett PA link
+
+Header-adjacent Back to Brett PA link opens https://brettpa.com/ in the same tab, without identifiers/query/hash/referrer. Keeplume still opens directly and independently: no login required, data stays at its original github.io origin. Only connection labels follow supported browser language English/German/French; the rest of Keeplume stays English. No account, storage, crypto, manifest scope or synchronization changes. The existing build naturally versions the static shell; update waits for user action and never clears IndexedDB. Rollback removes the links through normal PR/CI; do not delete local records/cache automatically. Physical iOS standalone cross-app navigation remains manual.
