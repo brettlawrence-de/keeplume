@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.keeplume
+*.backup
+*.private.json
+*.log
+.env*
+.local/
+screenshots/
