@@ -1,4 +1,4 @@
-# Keeplume release verification — 12 October 2026
+# Nelmavriq release verification — 12 October 2026
 
 17 synthetic automated tests PASS. Covers atomic IndexedDB/revisions, concurrent changes, quota/interruption rollback, schema/version refusal, item history/deletion/location links/search/routine sessions, authenticated backup roundtrip/wrong passphrase/corrupt envelope/duplicates, CSP/safe rendering and PWA icons. Dependency audit reports zero vulnerabilities.
 
@@ -13,3 +13,8 @@ Hosting choice: separate public brettlawrence-de/keeplume repository on existing
 References: https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits ; https://docs.github.com/en/billing/concepts/product-billing/github-actions .
 
 Source/QA receipts retained in C:/Users/USER/AppData/Local/Temp/keeplume-browser-result.json and keeplume-preview. The synthetic backup fixtures are not in Git. Brett PA/source/database/deployment/domain/settings untouched throughout this task.
+
+
+## Name and compatibility
+
+Previously Keeplume; the existing `/keeplume/` address and repository, IndexedDB `keeplume-vault`, channel/cache identifiers and encrypted `format: Keeplume` version1 remain intentionally unchanged. Old `.keeplume` backups import normally; new exports use the Nelmavriq display name with the same compatible extension/encryption. No records are migrated or cleared. iPhone installed names/icons may not refresh automatically; do not uninstall or clear website data before a verified backup.
