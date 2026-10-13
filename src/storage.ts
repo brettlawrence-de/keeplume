@@ -8,7 +8,7 @@ export function openDB(): Promise<IDBDatabase> {
                 request.result.createObjectStore('vault');
         };
         request.onerror = () => reject(Error('Device storage could not open. Do not clear browser data; try reopening Safari.'));
-        request.onblocked = () => reject(Error('Close other Keeplume tabs and retry the storage update.'));
+        request.onblocked = () => reject(Error('Close other Nelmavriq tabs and retry the storage update.'));
         request.onsuccess = () => { request.result.onversionchange = () => request.result.close(); resolve(request.result); };
     });
 }
@@ -48,7 +48,7 @@ export async function commit(next: State, expected: number): Promise<State> {
             const current = store.get('state');
             current.onsuccess = () => {
                 if ((current.result?.revision || 0) !== expected) {
-                    problem = 'Another Keeplume tab changed these records. Reload and review before saving again.';
+                    problem = 'Another Nelmavriq tab changed these records. Reload and review before saving again.';
                     tx.abort();
                     return;
                 }

@@ -1,4 +1,4 @@
-# Keeplume — Remember where.
+# Nelmavriq — Everything in its place.
 
 Private, device-local belongings library and leaving routines. TypeScript, native IndexedDB and Web Crypto; zero runtime dependencies, server accounts, analytics or personal-data upload. Replacement SVG artwork is original, not a reproduction of an unavailable brand sheet.
 
@@ -26,3 +26,8 @@ Emulation does not verify physical iPhone camera permissions, Home Screen instal
 ## Hosted app
 
 Personal HTTPS address: https://brettlawrence-de.github.io/keeplume/ . Repository: https://github.com/brettlawrence-de/keeplume . Install/recovery/device checklist: docs/IPHONE-GUIDE.md . Latest local deployment receipt and resumable status: .local/RELEASE.md (ignored, never contains personal records or credentials).
+
+
+## Name and compatibility
+
+Previously Keeplume; the existing `/keeplume/` address and repository, IndexedDB `keeplume-vault`, channel/cache identifiers and encrypted `format: Keeplume` version1 remain intentionally unchanged. Old `.keeplume` backups import normally; new exports use the Nelmavriq display name with the same compatible extension/encryption. No records are migrated or cleared. iPhone installed names/icons may not refresh automatically; do not uninstall or clear website data before a verified backup.

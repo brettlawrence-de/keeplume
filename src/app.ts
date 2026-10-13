@@ -127,7 +127,7 @@ function showOnboarding() {
     main.replaceChildren();
     const section = el('section', undefined, 'hero'), icon = el('img');
     icon.src = './assets/icon.svg';
-    icon.alt = 'Keeplume locator and bookmark';
+    icon.alt = 'Nelmavriq stored object and location emblem';
     icon.className = 'brand-icon';
     section.append(icon, el('p', 'LESS SEARCHING. MORE LIVING.', 'eyebrow'), el('h1', 'Save where you put something. Find it when you need it.'), el('p', 'A photo, a location, a little peace of mind. Keep your belongings and leaving routines together.', 'lede'));
     const privacy = el('div', undefined, 'panel');
@@ -553,7 +553,7 @@ function exportBackup() {
         try {
             const blob = await encrypt(state, pass.input.value);
             pass.input.value = confirmPass.input.value = '';
-            download(blob, 'Keeplume-' + dateToday() + '.keeplume');
+            download(blob, 'Nelmavriq-' + dateToday() + '.keeplume');
             busy = false;
             await mutate(s => s.settings.lastBackup = now());
             dirty = false;
@@ -574,7 +574,7 @@ function exportBackup() {
 }
 function importBackup() {
     modal('Recover a backup');
-    const form = el('form'), file = field('Keeplume encrypted backup file', 'file'), pass = field('Backup passphrase', 'password', '', 1024);
+    const form = el('form'), file = field('Nelmavriq encrypted backup file', 'file'), pass = field('Backup passphrase', 'password', '', 1024);
     file.input.accept = '.keeplume,application/json';
     file.input.required = pass.input.required = true;
     pass.input.autocomplete = 'off';
@@ -598,7 +598,7 @@ function importBackup() {
             modal('Backup verified');
             dialog.append(el('p', incoming.items.length + ' items, ' + incoming.locations.length + ' locations and ' + incoming.routines.length + ' routines, including saved photos.'), el('p', 'Merge keeps existing records with matching IDs and adds new records. Replace removes current records first, inside a single transaction. Export your current data before replacing.'));
             const apply = async (mode: 'merge' | 'replace') => {
-                if (!confirm(mode === 'replace' ? 'Replace all current Keeplume records with this verified backup? This cannot be undone without your current backup.' : 'Merge this backup? Existing records with matching IDs will be kept.'))
+                if (!confirm(mode === 'replace' ? 'Replace all current Nelmavriq records with this verified backup? This cannot be undone without your current backup.' : 'Merge this backup? Existing records with matching IDs will be kept.'))
                     return;
                 await mutate(s => { const next = mode === 'merge' ? merge(s, incoming) : validate(incoming); Object.assign(s, next, { revision: s.revision }); });
                 dirty = false;
@@ -628,7 +628,7 @@ function settings() {
     sort.input.addEventListener('change', () => void mutate(s => s.settings.sort = sort.input.value as State['settings']['sort']).catch(showError));
     panel.append(el('h2', 'Display'), appearance.wrap, sort.wrap);
     const backup = el('section', undefined, 'panel');
-    backup.append(el('h2', 'Your safety net.'), el('p', 'Records and photos stay in this browser’s IndexedDB, not on a server. Browser data can be cleared or evicted. Keep backups outside this browser.'), el('p', state.settings.lastBackup ? 'Last export prepared: ' + timeLabel(state.settings.lastBackup) : 'No backup export prepared yet.', 'subtle'), actions(button('Export encrypted backup', exportBackup), button('Import backup', importBackup, 'secondary')), el('p', 'Exports do not upload or sync. Save your passphrase separately; Keeplume cannot recover it.', 'subtle'));
+    backup.append(el('h2', 'Your safety net.'), el('p', 'Records and photos stay in this browser’s IndexedDB, not on a server. Browser data can be cleared or evicted. Keep backups outside this browser.'), el('p', state.settings.lastBackup ? 'Last export prepared: ' + timeLabel(state.settings.lastBackup) : 'No backup export prepared yet.', 'subtle'), actions(button('Export encrypted backup', exportBackup), button('Import backup', importBackup, 'secondary')), el('p', 'Exports do not upload or sync. Save your passphrase separately; Nelmavriq cannot recover it.', 'subtle'));
     const storage = el('section', undefined, 'panel'), estimate = el('p', 'Checking storage availability…');
     storage.append(el('h2', 'Device storage'), estimate, button('Request persistent storage', async () => { const allowed = await navigator.storage?.persist?.(); toast(allowed ? 'This browser granted persistent storage. Still keep external backups.' : 'Persistent storage was not granted or is unsupported. Keep external backups.'); }, 'secondary'));
     void navigator.storage?.estimate?.().then(value => {
@@ -638,9 +638,9 @@ function settings() {
     if (!navigator.storage?.estimate)
         estimate.textContent = 'Storage estimates are not available in this browser.';
     const install = el('section', undefined, 'panel');
-    install.append(el('h2', 'Keep Keeplume close.'), el('p', 'On iPhone: open this address in Safari → Share → Add to Home Screen. This is a web app, not an App Store listing.'), el('p', 'After one successful online load, saved items and routines work offline on this same device/browser. Installation is not cloud backup.'));
+    install.append(el('h2', 'Keep Nelmavriq close.'), el('p', 'On iPhone: open this address in Safari → Share → Add to Home Screen. This is a web app, not an App Store listing.'), el('p', 'After one successful online load, saved items and routines work offline on this same device/browser. Installation is not cloud backup.'));
     if (!standalone()) {
-        install.append(button(installPrompt ? 'Install Keeplume' : 'View installation steps', async () => {
+        install.append(button(installPrompt ? 'Install Nelmavriq' : 'View installation steps', async () => {
             if (installPrompt) {
                 const event = installPrompt;
                 installPrompt = null;
@@ -724,7 +724,7 @@ window.addEventListener('beforeinstallprompt', (event: Event) => {
 });
 window.addEventListener('appinstalled', () => {
     installPrompt = null;
-    toast('Installation was reported by your browser. Find Keeplume on your device.');
+    toast('Installation was reported by your browser. Find Nelmavriq on your device.');
     if (page === 'settings')
         render();
 });
@@ -769,7 +769,7 @@ async function setupWorker() {
 }
 async function start() {
     if (window.top !== window.self) {
-        main.replaceChildren(el('p', 'Open Keeplume directly in your browser for privacy.'));
+        main.replaceChildren(el('p', 'Open Nelmavriq directly in your browser for privacy.'));
         return;
     }
     try {
@@ -794,7 +794,7 @@ async function start() {
         });
     }
     catch (error) {
-        main.replaceChildren(empty('Your library could not open.', 'Do not clear browser data. Reopen Keeplume or restore a backup only after checking the error.', button('Retry', start)));
+        main.replaceChildren(empty('Your library could not open.', 'Do not clear browser data. Reopen Nelmavriq or restore a backup only after checking the error.', button('Retry', start)));
         main.append(el('p', error instanceof Error ? error.message : 'Storage unavailable', 'error'));
     }
 }

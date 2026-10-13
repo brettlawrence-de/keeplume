@@ -37,7 +37,7 @@ export async function decrypt(file: Blob, passphrase: string): Promise<State> {
         envelope = JSON.parse(await file.text());
     }
     catch {
-        throw Error('This is not a valid Keeplume backup.');
+        throw Error('This is not a valid Nelmavriq backup.');
     }
     if (!envelope || envelope.format !== 'Keeplume' || envelope.version !== 1 || envelope.cipher !== 'AES-256-GCM' || envelope.kdf !== 'PBKDF2-SHA256' || envelope.iterations !== 600000)
         throw Error('Unsupported backup format. Nothing was changed.');
